@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springbucks.mapper.OrderMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into T_ORDER(customer, state, create_time, update_time)
+        values (#{order.customer},
+                #{order.state},
+                #{order.createTime},
+                #{order.updateTime})
+    </insert>
+    <delete id="delete">
+        delete from T_ORDER where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <update id="update">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update T_ORDER
+            <set>
+                customer=#{item.customer}
+            </set>
+            <set>
+                `state`=#{item.state}
+            </set>
+            <set>
+                create_time=#{item.createTime}
+            </set>
+            <set>
+                update_time=#{item.updateTime}
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+    <select id="findByIds" resultType="com.study.springbucks.model.Order">
+        select * from T_ORDER
+        where id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

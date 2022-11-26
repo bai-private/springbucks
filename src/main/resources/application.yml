@@ -1,8 +1,57 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
+  output:
+    ansi:
+      enabled: always
+  # 数据库连接
+  datasource:
+    url: jdbc:h2:mem:coffee_shop
+    username: admin
+    password: n/z7PyA5cvcXvs8px8FVmBVpaRyNsvJb3X7YfS38DJrIg25EbZaZGvH4aHcnc97Om0islpCAPc3MqsGvsrxVJw==
+    # druid连接池配置
+    druid:
+      initial-size: 5
+      max-active: 5
+      min-idle: 5
+      filters: conn,config,stat,slf4j
+      connect-properties: config.decrypt=true;config.decrypt.key=${public-key}
+      filter:
+        config:
+          enabled: true
+      test-on-borrow: true
+      test-on-return: true
+      test-while-idle: true
+      validation-query: 'select 1'
+  # 应用redis作为spring cache的缓存池
+  cache:
+    type: redis
+    cache-names:
+    redis:
+      time-to-live: 5000
+      cache-null-values: false
+  # redis连接配置
+  redis:
+    host: 47.116.12.196
+    port: 6379
+
+# 数据库连接密码加密key
+public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==
+
+# actuator暴露的节点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# mybatis的xml扫描路径
+mybatis:
+  mapper-locations: classpath:mapper/**.xml
+  # 配置金额转换处理器
+  type-handlers-package: com.study.springbucks.handler
+  configuration:
+    # 配置sql输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 配置默认的枚举转换器，将枚举的值存入库中
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    # 驼峰转换
+    map-underscore-to-camel-case: true

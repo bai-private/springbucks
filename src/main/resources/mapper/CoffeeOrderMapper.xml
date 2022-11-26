@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springbucks.mapper.CoffeeOrderMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into T_COFFEE_ORDER(coffee_id, order_id, create_time, update_time)
+        values
+        <foreach collection="list" item="coffeeOrder" separator=",">
+            (#{coffeeOrder.coffeeId}, #{coffeeOrder.orderId}, #{coffeeOrder.createTime}, #{coffeeOrder.updateTime})
+        </foreach>
+    </insert>
+</mapper>

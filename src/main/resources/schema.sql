@@ -20,9 +20,13 @@ create table t_order (
     primary key (id)
 );
 
-create table t_order_coffee (
-    coffee_order_id bigint not null,
-    items_id bigint not null
+create table t_coffee_order (
+    id bigint auto_increment,
+    coffee_id bigint not null,
+    order_id bigint not null,
+    create_time timestamp,
+    update_time timestamp,
+    primary key (id)
 );
 
 insert into t_coffee (name, price, create_time, update_time) values ('espresso', 2000, now(), now());

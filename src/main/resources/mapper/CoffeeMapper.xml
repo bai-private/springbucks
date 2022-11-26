@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springbucks.mapper.CoffeeMapper">
+
+    <insert id="insert">
+        insert into T_COFFEE(name, price, create_time, update_time)
+        values (#{coffee.name}, #{coffee.price}, #{coffee.createTime}, #{coffee.updateTime})
+    </insert>
+    <delete id="delete">
+        delete from T_COFFEE where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <update id="update">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update T_COFFEE
+            <set>
+                name=#{item.name}
+            </set>
+            <set>
+                price=#{item.price}
+            </set>
+            <set>
+                create_time=#{item.createTime}
+            </set>
+            <set>
+                update_time=#{item.updateTime}
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+    <select id="findByName" resultType="com.study.springbucks.model.Coffee">
+        select *
+        from T_COFFEE
+        where name = #{name}
+    </select>
+    <select id="findAll" resultType="com.study.springbucks.model.Coffee">
+        select *
+        from T_COFFEE
+    </select>
+    <select id="findByIds" resultType="com.study.springbucks.model.Coffee">
+        select * from T_COFFEE
+        where id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
