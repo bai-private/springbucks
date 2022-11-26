@@ -1,6 +1,5 @@
 package com.study.springbucks.mapper;
 
-import com.study.springbucks.model.Coffee;
 import com.study.springbucks.model.Order;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

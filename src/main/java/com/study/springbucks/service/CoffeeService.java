@@ -1,6 +1,5 @@
 package com.study.springbucks.service;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.study.springbucks.mapper.CoffeeMapper;
@@ -13,7 +12,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 咖啡服务类
@@ -55,5 +53,14 @@ public class CoffeeService {
         Coffee coffee = coffeeMapper.findByName(name);
         log.info("Coffee Found: {}", coffee);
         return coffee;
+    }
+
+    /**
+     * 查找所有咖啡商品项
+     *
+     * @return 咖啡商品项列表
+     */
+    public List<Coffee> findAll() {
+        return coffeeMapper.findAll();
     }
 }

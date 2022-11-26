@@ -1,3 +1,4 @@
+# 以下有关IP、端口、密码等信息因使用私人服务器部署原因，仅7天内有效
 spring:
   output:
     ansi:
@@ -31,7 +32,21 @@ spring:
   # redis连接配置
   redis:
     host: 47.116.12.196
-    port: 6379
+    port: 7001
+    password: gientech
+    lettuce:
+      pool:
+        max-active: 5
+        max-idle: 5
+    # 集群配置
+    cluster:
+      nodes:
+        - 47.116.12.196:7001
+        - 47.116.12.196:7002
+        - 47.116.12.196:7003
+        - 47.116.12.196:7004
+        - 47.116.12.196:7005
+        - 47.116.12.196:7006
 
 # 数据库连接密码加密key
 public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALS8ng1XvgHrdOgm4pxrnUdt3sXtu/E8My9KzX8sXlz+mXRZQCop7NVQLne25pXHtZoDYuMh3bzoGj6v5HvvAQ8CAwEAAQ==
