@@ -1,2 +1,5 @@
 # springbucks
 中电金信分布式初级04期学习项目
+
+- 第二次作业位于bucksdemo中的biz模块的beanconfig和controller下
+- 远程访问接口位于remotedemo模块下

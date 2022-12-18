@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * @description: Bean示例
  * @author: 白剑民
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Data
 @Component
-public class ExampleBean {
+public class ExampleBean implements Serializable {
 
     /* 使用注解@Value同样能注入默认属性，当xml也配置了value属性时，则以xml配置为准 */
 
