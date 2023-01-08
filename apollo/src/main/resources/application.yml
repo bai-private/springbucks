@@ -1,0 +1,10 @@
+server:
+  port: 9991
+app:
+  id: test
+apollo:
+  bootstrap:
+    enabled: true
+    eagerLoad:
+      enabled: true
+  config-service: http://47.116.12.196:8080

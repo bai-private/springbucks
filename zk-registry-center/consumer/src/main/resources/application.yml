@@ -1,0 +1,9 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: consumer-ZKpayment-module
+  cloud:
+    zookeeper:
+      connect-string: 47.116.12.196:2181

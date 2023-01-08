@@ -18,6 +18,9 @@
     <modules>
         <module>bucksdemo</module>
         <module>remotedemo</module>
+        <module>spring-cloud-stream</module>
+        <module>apollo</module>
+        <module>zk-registry-center</module>
     </modules>
 
     <properties>

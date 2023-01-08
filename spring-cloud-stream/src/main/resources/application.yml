@@ -1,0 +1,26 @@
+server:
+  port: 9990
+
+spring:
+  cloud:
+    stream:
+      binders:
+        # RabbitMQ的Binder
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 47.116.12.196
+                port: 5672
+                username: admin
+                password: 123456
+      # RabbitMQ的Binding
+      bindings:
+        output:
+          binder: rabbit
+          destination: scsStreamExchange
+        input:
+          binder: rabbit
+          destination: scsStreamExchange
+          group: stream
